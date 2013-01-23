@@ -3530,8 +3530,8 @@ static struct regulator_consumer_supply vreg_consumers_PM8058_S1[] = {
 /* RPM early regulator constraints */
 static struct rpm_regulator_init_data rpm_regulator_early_init_data[] = {
 	/*	 ID       a_on pd ss min_uV   max_uV   init_ip    freq */
-	RPM_SMPS(PM8058_S0, 0, 1, 1,  500000, 1325000, SMPS_HMIN, 1p60),
-	RPM_SMPS(PM8058_S1, 0, 1, 1,  500000, 1250000, SMPS_HMIN, 1p60),
+	RPM_SMPS(PM8058_S0, 0, 1, 1,  500000, 1450000, SMPS_HMIN, 1p60),
+	RPM_SMPS(PM8058_S1, 0, 1, 1,  500000, 1450000, SMPS_HMIN, 1p60),
 };
 
 static struct rpm_regulator_platform_data rpm_regulator_early_pdata = {
@@ -7875,3 +7875,5 @@ MACHINE_START(SEMC_FUJI, "fuji")
 	.timer = &msm_timer,
 	.init_early = msm8x60_fuji_init_early,
 MACHINE_END
+
+
