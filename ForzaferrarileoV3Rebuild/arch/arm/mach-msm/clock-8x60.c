@@ -217,6 +217,7 @@
 #define pxo_to_mm_mux		0
 #define pll1_to_mm_mux		1	/* or MMSS_PLL0 */
 #define pll2_to_mm_mux		1	/* or MMSS_PLL1 */
+
 #define pll3_to_mm_mux		3	/* or MMSS_PLL2 */
 #define pll8_to_mm_mux		2	/* or MMSS_GPERF */
 #define pll0_to_mm_mux		3	/* or MMSS_GPLL0 */
@@ -2257,6 +2258,7 @@ static struct clk_freq_tbl clk_tbl_gfx2d[] = {
 	F_GFX2D(177778000, pll2, 2,  9),
 	F_GFX2D(200000000, pll2, 1,  4),
 	F_GFX2D(228571000, pll2, 2,  7),
+	F_GFX3D(266667000, pll2, 1,  3),
 	F_END
 };
 
@@ -2368,6 +2370,7 @@ static struct clk_freq_tbl clk_tbl_gfx3d[] = {
 	F_GFX3D(200000000, pll2, 1,  4),
 	F_GFX3D(228571000, pll2, 2,  7),
 	F_GFX3D(266667000, pll2, 1,  3),
+	F_GFX3D(300000000, pll2, 3,  8),
 	F_GFX3D(320000000, pll2, 2,  5),
 	F_END
 };
