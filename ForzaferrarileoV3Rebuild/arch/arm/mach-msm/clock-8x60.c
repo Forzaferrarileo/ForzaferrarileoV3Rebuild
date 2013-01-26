@@ -217,7 +217,6 @@
 #define pxo_to_mm_mux		0
 #define pll1_to_mm_mux		1	/* or MMSS_PLL0 */
 #define pll2_to_mm_mux		1	/* or MMSS_PLL1 */
-
 #define pll3_to_mm_mux		3	/* or MMSS_PLL2 */
 #define pll8_to_mm_mux		2	/* or MMSS_GPERF */
 #define pll0_to_mm_mux		3	/* or MMSS_GPLL0 */
@@ -2258,7 +2257,7 @@ static struct clk_freq_tbl clk_tbl_gfx2d[] = {
 	F_GFX2D(177778000, pll2, 2,  9),
 	F_GFX2D(200000000, pll2, 1,  4),
 	F_GFX2D(228571000, pll2, 2,  7),
-	F_GFX2D(266667000, pll2, 1,  3),
+	F_GFX2D(266000000, pll2, 1,  3),
 	F_END
 };
 
@@ -2299,7 +2298,7 @@ static struct rcg_clk gfx2d0_clk = {
 		.dbg_name = "gfx2d0_clk",
 		.ops = &clk_ops_rcg_8x60,
 		VDD_DIG_FMAX_MAP3(LOW,  100000000, NOMINAL, 200000000,
-				  HIGH, 228571000),
+				  HIGH, 266000000),
 		CLK_INIT(gfx2d0_clk.c),
 	},
 };
@@ -2341,7 +2340,7 @@ static struct rcg_clk gfx2d1_clk = {
 		.dbg_name = "gfx2d1_clk",
 		.ops = &clk_ops_rcg_8x60,
 		VDD_DIG_FMAX_MAP3(LOW,  100000000, NOMINAL, 200000000,
-				  HIGH, 228571000),
+				  HIGH, 266000000),
 		CLK_INIT(gfx2d1_clk.c),
 	},
 };
@@ -4009,3 +4008,4 @@ struct clock_init_data msm8x60_clock_init_data __initdata = {
 	.init = msm8660_clock_init,
 	.late_init = msm8660_clock_late_init,
 };
+
