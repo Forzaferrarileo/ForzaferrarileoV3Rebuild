@@ -1,0 +1,1 @@
+cmd_drivers/input/touchscreen/built-in.o :=  /home/leo/toolchain/4.4.3/bin/arm-eabi-ld -EL    -r -o drivers/input/touchscreen/built-in.o drivers/input/touchscreen/atmel_maxtouch.o drivers/input/touchscreen/clearpad_core.o drivers/input/touchscreen/clearpad_i2c.o 

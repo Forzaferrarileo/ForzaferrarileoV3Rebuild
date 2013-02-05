@@ -1,0 +1,7 @@
+kernel/arch/arm/mach-msm/msm-etm.ko
+kernel/arch/arm/mach-msm/pil-q6v3.ko
+kernel/arch/arm/mach-msm/pil-tzapps.ko
+kernel/arch/arm/mach-msm/pil-modem.ko
+kernel/arch/arm/mach-msm/rpm_stats.ko
+kernel/arch/arm/mach-msm/rpm_log.ko
+kernel/arch/arm/mach-msm/qdsp6v2/snddev_icodec.ko

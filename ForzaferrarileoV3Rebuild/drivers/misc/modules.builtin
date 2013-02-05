@@ -1,0 +1,9 @@
+kernel/drivers/misc/pmic8058-pwm.ko
+kernel/drivers/misc/pm8xxx-vibrator.ko
+kernel/drivers/misc/pm8xxx-nfc.ko
+kernel/drivers/misc/pm8xxx-upl.ko
+kernel/drivers/misc/pmic8058-xoadc.ko
+kernel/drivers/misc/tzcom.ko
+kernel/drivers/misc/lm356x.ko
+kernel/drivers/misc/pn544.ko
+kernel/drivers/misc/mpu3050/mpu3050.ko

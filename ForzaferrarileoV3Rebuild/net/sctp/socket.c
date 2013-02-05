@@ -1160,8 +1160,14 @@ out_free:
 	SCTP_DEBUG_PRINTK("About to exit __sctp_connect() free asoc: %p"
 			  " kaddrs: %p err: %d\n",
 			  asoc, kaddrs, err);
-	if (asoc)
+	if (asoc) {
+		/* sctp_primitive_ASSOCIATE may have added this association
+		 * To the hash table, try to unhash it, just in case, its a noop
+		 * if it wasn't hashed so we're safe
+		 */
+		sctp_unhash_established(asoc);
 		sctp_association_free(asoc);
+	}
 	return err;
 }
 
@@ -1831,8 +1837,8 @@ SCTP_STATIC int sctp_sendmsg(struct kiocb *iocb, struct sock *sk,
 
 	/* Break the message into multiple chunks of maximum size. */
 	datamsg = sctp_datamsg_from_user(asoc, sinfo, msg, msg_len);
-	if (!datamsg) {
-		err = -ENOMEM;
+	if (IS_ERR(datamsg)) {
+		err = PTR_ERR(datamsg);
 		goto out_free;
 	}
 
@@ -1871,8 +1877,10 @@ SCTP_STATIC int sctp_sendmsg(struct kiocb *iocb, struct sock *sk,
 	goto out_unlock;
 
 out_free:
-	if (new_asoc)
+	if (new_asoc) {
+		sctp_unhash_established(asoc);
 		sctp_association_free(asoc);
+	}
 out_unlock:
 	sctp_release_sock(sk);
 
@@ -2129,8 +2137,6 @@ static int sctp_setsockopt_autoclose(struct sock *sk, char __user *optval,
 		return -EINVAL;
 	if (copy_from_user(&sp->autoclose, optval, optlen))
 		return -EFAULT;
-	/* make sure it won't exceed MAX_SCHEDULE_TIMEOUT */
-	sp->autoclose = min_t(long, sp->autoclose, MAX_SCHEDULE_TIMEOUT / HZ);
 
 	return 0;
 }

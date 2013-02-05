@@ -2005,6 +2005,8 @@ int uart_resume_port(struct uart_driver *drv, struct uart_port *uport)
 		 */
 		if (port->tty && port->tty->termios && termios.c_cflag == 0)
 			termios = *(port->tty->termios);
+		if (console_suspend_enabled)
+			uart_change_pm(state, 0);
 		/*
 		 * As we need to set the uart clock rate back to 7.3 MHz.
 		 * We need this change.
@@ -2332,6 +2334,7 @@ void uart_unregister_driver(struct uart_driver *drv)
 	tty_unregister_driver(p);
 	put_tty_driver(p);
 	kfree(drv->state);
+	drv->state = NULL;
 	drv->tty_driver = NULL;
 }
 

@@ -1,0 +1,1 @@
+cmd_drivers/video/msm/mipi_r63306_panels/built-in.o :=  /home/leo/toolchain/4.4.3/bin/arm-eabi-ld -EL    -r -o drivers/video/msm/mipi_r63306_panels/built-in.o drivers/video/msm/mipi_r63306_panels/mipi_tmd_video_wxga_mdv20.o drivers/video/msm/mipi_r63306_panels/mipi_sharp_video_wxga_ls043k3sx01.o 

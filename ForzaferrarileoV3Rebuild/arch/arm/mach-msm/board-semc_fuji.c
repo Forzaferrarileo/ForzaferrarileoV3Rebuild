@@ -2400,15 +2400,19 @@ static struct msm_i2c_ssbi_platform_data msm_ssbi3_pdata = {
 #endif
 
 #ifdef CONFIG_FB_MSM_TRIPLE_BUFFER
-#define MSM_FB_PRIM_BUF_SIZE (1280 * 736 * 4 * 3) /* 4 bpp x 3 pages */
+#define MSM_FB_PRIM_BUF_SIZE \
+(roundup((1280 * ALIGN(720, 32) * 4), 4096) * 3) /* 4 bpp x 3 pages */
 #else
-#define MSM_FB_PRIM_BUF_SIZE (1280 * 736 * 4 * 2) /* 4 bpp x 2 pages */
+#define MSM_FB_PRIM_BUF_SIZE \
+(roundup((1280 * ALIGN(720, 32) * 2), 4096) * 2) /* 4 bpp x 3 pages */
 #endif
 
 #ifdef CONFIG_FB_MSM_HDMI_MSM_PANEL
-#define MSM_FB_EXT_BUF_SIZE  (1920 * 1088 * 2 * 1) /* 2 bpp x 1 page */
+#define MSM_FB_EXT_BUF_SIZE \
+(roundup((1920 * ALIGN(1080, 32) * 2), 4096) * 1) /* 2 bpp x 1 page */
 #elif defined(CONFIG_FB_MSM_TVOUT)
-#define MSM_FB_EXT_BUF_SIZE  (720 * 576 * 2 * 2) /* 2 bpp x 2 pages */
+#define MSM_FB_EXT_BUF_SIZE \
+(roundup((720 * 576 * 2), 4096) * 2) /* 2 bpp x 2 pages */
 #else
 #define MSM_FB_EXT_BUFT_SIZE	0
 #endif
@@ -2417,7 +2421,7 @@ static struct msm_i2c_ssbi_platform_data msm_ssbi3_pdata = {
 #define MSM_FB_SIZE roundup(MSM_FB_PRIM_BUF_SIZE + MSM_FB_EXT_BUF_SIZE + \
 				MSM_FB_DSUB_PMEM_ADDER, 4096)
 
-#define MSM_PMEM_SF_SIZE 0x6E00000 /* 110 Mbytes */
+#define MSM_PMEM_SF_SIZE 0x7800000 /* 110 Mbytes */
 #define MSM_HDMI_PRIM_PMEM_SF_SIZE 0x4000000 /* 64 Mbytes */
 
 #ifdef CONFIG_FB_MSM_HDMI_AS_PRIMARY
